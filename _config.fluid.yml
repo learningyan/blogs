@@ -807,17 +807,17 @@ links:
       link: "https://xyu.ink/",
       image: "http://www.xyu.ink/wp-content/uploads/2020/04/favicon.png"
     }
-    # - {
-    #   title: "Fluid Docs",
-    #   intro: "主题使用指南",
-    #   link: "https://hexo.fluid-dev.com/docs/",
-    #   image: "/img/favicon.png"
-    # }
-    # - {
-    #   title: "Fluid Repo",
-    #   intro: "主题 GitHub 仓库",
-    #   link: "https://github.com/fluid-dev/hexo-theme-fluid",
-    #   image: "/img/favicon.png"
+    - {
+      title: "Fluid Docs",
+      intro: "主题使用指南",
+      link: "https://hexo.fluid-dev.com/docs/",
+      image: "/img/favicon.png"
+    }
+    - {
+      title: "Fluid Repo",
+      intro: "主题 GitHub 仓库",
+      link: "https://github.com/fluid-dev/hexo-theme-fluid",
+      image: "/img/favicon.png"
     }
 
 
