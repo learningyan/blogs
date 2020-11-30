@@ -600,7 +600,7 @@ post:
   comments:
     enable: true
     # Options: disqus | valine | gitalk | utterances | changyan | livere | remark42 | twikoo
-    type: disqus
+    type: utterances
 
 
 #---------------------------
@@ -616,7 +616,7 @@ post:
 # Based on GitHub Issues
 # See: https://utteranc.es
 utterances:
-  repo:
+  repo: learningyan/comment
   issue_term: pathname
   label: utterances
   theme: github-light
@@ -628,11 +628,11 @@ utterances:
 # Third-party based services, it is a very popular
 # See: https://disqus.com
 disqus:
-  shortname:
+  shortname: fluid
   # 以下为 Disqusjs 支持, 国内用户如果想使用 Disqus 建议配合使用
   # The following are Disqusjs configurations, please ignore if DisqusJS is not required
   # See: https://github.com/SukkaW/DisqusJS
-  disqusjs: false
+  disqusjs: true
   apikey:
 
 # Gitalk
