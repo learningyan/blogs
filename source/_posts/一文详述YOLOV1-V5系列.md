@@ -169,4 +169,25 @@ if __name__ == "__main__":
 
 ## YOLO V2
 
-[论文链接][https://arxiv.org/abs/1612.08242]
+[论文链接][https://arxiv.org/pdf/1612.08242.pdf]
+
+了解完YOLO V1，咱们来看看小马哥的YOLO V2，（至于为什么叫小🐎哥，去YOLO官网看看大佬的简历就知道了哈哈哈）
+
+​		前面说到YOLO V1 的 `unified`,  `real-time`， 但也有不足之处，就是因为漏检呢，召回率会比较低。YOLO V2 对 YOLO V1进行了很多改进。先说说论文题目怎么叫 YOLO9000， YOLO 9000 是采用了和 YOLO V2 一样的模型， 在COCO 和 ImageNet 上一起训练，使得训练后的模型可以实现多达9000种物体的实时检测。
+
+**YOLO V2 的改进之处:**
+
+先看看论文里这个从YOLO V1 到 YOLO V2的路线图：
+
+![the path from YOLO to YOLO V2][yolov2path.png]
+
+① Batch norm:  这里先简单介绍一些Batch norm, 后面会有文章专门介绍各种 norm; 
+
+​	CNN在训练过程中网络每层输入的分布一直在改变, 会使训练过程难度加大，但可以通过normalize每层的输入解决这个问题，具体做法是: 数据的输入值减去其均值然后除以数据的标准差，然后引入一个平移变量和缩放变量，再计算归一化的值。
+
+通过 BN，我们可以看到 mAP 得到了`2.2` 个点的提高。
+
+②  High Resolution Classifier: 几乎所有的检测器都会使用在 ImageNet 上预训练的分类器，YOLO V1 中用`224 × 224` 的图片来预训练分类网络，检测时增大分辨率至 `448 × 448`，这意味着网络不得不同时学习检测任务和适应新的更大的分辨率。而在YOLO V2 中，作者先直接用`448 × 448`的分辨率在 ImageNet 上finetune ，然后作者对检测网络部分（也就是后半部分）也进行fine tune， 这个操作可以提升大约`4`个点。
+
+③ Convolutional With Anchor Boxes：对于Anchor Box 可以理解为预定义的一些边框，在YOLO 中，作者是通过K-Means 聚类来得到这些边框，
+
