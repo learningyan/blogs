@@ -179,7 +179,7 @@ if __name__ == "__main__":
 
 先看看论文里这个从YOLO V1 到 YOLO V2的路线图：
 
-![the path from YOLO to YOLO V2][yolov2path.png]
+![the path from YOLO to YOLO V2](yolov2path.png)
 
 ① Batch norm:  这里先简单介绍一些Batch norm, 后面会有文章专门介绍各种 norm; 
 
@@ -189,5 +189,10 @@ if __name__ == "__main__":
 
 ②  High Resolution Classifier: 几乎所有的检测器都会使用在 ImageNet 上预训练的分类器，YOLO V1 中用`224 × 224` 的图片来预训练分类网络，检测时增大分辨率至 `448 × 448`，这意味着网络不得不同时学习检测任务和适应新的更大的分辨率。而在YOLO V2 中，作者先直接用`448 × 448`的分辨率在 ImageNet 上finetune ，然后作者对检测网络部分（也就是后半部分）也进行fine tune， 这个操作可以提升大约`4`个点。
 
-③ Convolutional With Anchor Boxes：对于Anchor Box 可以理解为预定义的一些边框，在YOLO 中，作者是通过K-Means 聚类来得到这些边框，
+③ Convolutional With Anchor Boxes：对于Anchor Box 可以理解为预定义的一些边框，在YOLO 中，作者是通过K-Means 聚类来得到这些边框，我们先看一组数:
 
+```
+anchors = 0.57273, 0.677385, 1.87446, 2.06253, 3.33843, 5.47434, 7.88282, 3.52778, 9.77052, 9.16828
+```
+
+咦？😯 怎么最大的才9点多？ 这是相对于最后一个Feature map 大小，YOLO V2 检测时候输入大小为`416 × 416`， 降采样32倍，变成`13 × 13`。
